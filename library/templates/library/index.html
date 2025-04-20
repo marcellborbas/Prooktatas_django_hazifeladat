@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Library!</h1>
+    <p>Explore our vast collection of books from various authors.</p>
+    <img src="{% static 'images/welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
+    <p><a href="{% url 'book_list' %}">Browse Books</a></p>
+    <p><a href="{% url 'author_list' %}">Browse Authors</a></p>
+</body>
+</html>
