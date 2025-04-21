@@ -20,5 +20,15 @@
             <li>No books found.</li>
         {% endfor %}
     </ul>
+{% if user.is_authenticated %}
+    {% if perms.library.add_book %}
+        <p><a href="{% url 'add_book' %}">Add New Book</a></p>
+    {% endif %}
+    {% if perms.library.add_author %}
+        <p><a href="{% url 'add_author' %}">Add New Author</a></p>
+    {% endif %}
+{% else %}
+    <p><a href="{% url 'login' %}">Login to add new content</a></p>
+{% endif %}
 </body>
 </html>

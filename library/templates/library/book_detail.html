@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>{{ book.title }}</h1>
+
     <p><strong>Authors:</strong>
         {% for author in book.authors.all %}
             {{ author.name }}{% if not forloop.last %}, {% endif %}
@@ -20,6 +21,28 @@
         <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" style="max-width: 300px;">
     {% endif %}
 
+    <hr>
+
+    <p><strong>Availability:</strong>
+        {% if book.available %}
+            <span style="color:green;">Available</span>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'borrow_book' book_id=book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Borrow this book</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <span style="color:red;">Not Available</span>
+        {% endif %}
+    </p>
+<p><strong>Borrowed By:</strong>
+    {% if book.borrowed_by %}
+        {{ book.borrowed_by.username }}
+    {% else %}
+        Not borrowed
+    {% endif %}
+</p>
     <p><a href="{% url 'book_list' %}">Back to list</a></p>
 </body>
 </html>

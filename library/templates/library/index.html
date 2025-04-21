@@ -11,5 +11,13 @@
     <img src="{% static 'images/welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
     <p><a href="{% url 'book_list' %}">Browse Books</a></p>
     <p><a href="{% url 'author_list' %}">Browse Authors</a></p>
+{% if user.is_authenticated %}
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
 </body>
 </html>

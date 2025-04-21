@@ -7,6 +7,9 @@ urlpatterns = [
     path('books/<int:book_id>/', views.book_detail, name='book_detail'),
     path('books/add/', views.add_book, name='add_book'),
     path('books/<int:book_id>/edit/', views.edit_book, name='edit_book'),
+    path('books/<int:book_id>/borrow/', views.borrow_book, name='borrow_book'),
     path('authors/', views.author_list, name='author_list'),
     path('authors/<int:author_id>/', views.author_detail, name='author_detail'),
+    path('authors/add/', views.add_author, name='add_author'),
+    path('library/', views.library_view, name='library'),
 ]
